@@ -5,9 +5,16 @@
     <head>
         <meta charset="UTF-8">
         <title>{{ window_title }}</title>
+
+        <!-- Bootstrap -->
+        <link href="{% static 'base/css/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
     </head>
 
     <body>
+    {% include 'navbar.html' %}
     {% block content %}{% endblock %}
+    <!-- placed at end of doc so it loads faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="{% static 'base/js/bootstrap/bootstrap.min.js' %}"></script>
     </body>
 </html>
