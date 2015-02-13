@@ -36,11 +36,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
-    'base',
-    'blog',
-    'gallery',
-    'todo',
+    'rockman.base',
+    'rockman.blog',
+    'rockman.gallery',
+    'rockman.todo',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -81,11 +82,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+# TODO: fix the static paths to be dynamic
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
+PROJECT_ROOT = PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
+
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 try:
     from rockman.local_settings import *
