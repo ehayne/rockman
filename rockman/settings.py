@@ -39,10 +39,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
 
     #zinna blog apps
+    'zinnia_bootstrap',
     'django_comments',
     'mptt',
     'tagging',
-    'zinnia_bootstrap',
     'zinnia',
 
     'rockman.base',
@@ -63,6 +63,7 @@ MIDDLEWARE_CLASSES = (
 
 TEMPLATE_LOADERS = [
     'django.template.loaders.app_directories.Loader',
+    'app_namespace.Loader',
 ]
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -99,6 +100,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+SITE_ID = 1
 
 # TODO: fix the static paths to be dynamic
 
