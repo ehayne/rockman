@@ -38,6 +38,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    'zinnia_bootstrap',
+    'zinnia',
+
     'rockman.base',
     'rockman.blog',
     'rockman.gallery',
@@ -53,6 +56,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+TEMPLATE_LOADERS = [
+    'django.template.loaders.app_directories.Loader',
+]
 
 ROOT_URLCONF = 'rockman.urls'
 
