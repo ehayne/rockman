@@ -38,6 +38,10 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    #zinna blog apps
+    'django_comments',
+    'mptt',
+    'tagging',
     'zinnia_bootstrap',
     'zinnia',
 
@@ -60,6 +64,13 @@ MIDDLEWARE_CLASSES = (
 TEMPLATE_LOADERS = [
     'django.template.loaders.app_directories.Loader',
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+  'django.contrib.auth.context_processors.auth',
+  'django.core.context_processors.i18n',
+  'django.core.context_processors.request',
+  'zinnia.context_processors.version',  # Optional for zinnia blog
+)
 
 ROOT_URLCONF = 'rockman.urls'
 
