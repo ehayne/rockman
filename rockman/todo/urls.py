@@ -3,6 +3,6 @@ from rockman.todo import views
 
 urlpatterns = patterns('',
 
-    url(r'^(?P<assignee>\w+)/$', views.lookup_person),
-    url(r'^(?P<category>\w+)/$', views.lookup_category),
+    url(r'^assignee/(?P<assignee>\w+)/$', views.lookup_person),
+    url(r'^category/(?P<category>\w+)/$', views.lookup_category),
 )
