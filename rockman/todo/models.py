@@ -13,10 +13,12 @@ class Todo(models.Model):
     created = models.DateTimeField(
         auto_now=True
     )
-    due = models.DateTimeField(
+    due = models.DateField(
         help_text='The date this item needs to be completed.'
     )
-    completed = models.DateTimeField(
+    completed = models.DateField(
+        blank=True,
+        null=True,
         help_text='The date this item was completed and checked off.'
     )
 
