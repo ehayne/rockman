@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+      <h3>ToDo List: {{ name }}</h3>
+      {% if todo_list %}
+        <form action="" method="POST">
+        {% csrf_token %}
+        {% for t in todo_list %}
+          <div class="checkbox {{ t.assignee }}">
+            <label><input type="checkbox" value="">{{ t.task }}, {{ t.category }}, {{ t.assignee }}, {{ t.due }}</label>
+          </div>
+        {% endfor %}
+          <input type="submit" value="Save">
+        </form>
+      {% else %}
+        <p>There are no todo items for {{name}}!!</p>
+      {% endif %}
+    </div>
+</div>
+{% endblock %}

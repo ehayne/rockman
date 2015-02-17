@@ -21,7 +21,10 @@ def lookup_person(request, assignee):
         'todo_list': list,
     }
 
-    template = 'todo.html'
+    if request.user.is_authenticated():
+        template = 'update_todo.html'
+    else:
+        template = 'view_todo.html'
 
     return render_to_response(template, context, RequestContext(request))
 
@@ -38,6 +41,9 @@ def lookup_category(request, category):
         'todo_list': list,
     }
 
-    template = 'todo.html'
+    if request.user.is_authenticated():
+        template = 'update_todo.html'
+    else:
+        template = 'view_todo.html'
 
     return render_to_response(template, context, RequestContext(request))
