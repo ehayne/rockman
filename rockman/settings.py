@@ -39,6 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
 
     #zinna blog apps
+
+    'rockman.blog',
     'zinnia_bootstrap',
     'django_comments',
     'mptt',
@@ -46,7 +48,6 @@ INSTALLED_APPS = (
     'zinnia',
 
     'rockman.base',
-    'rockman.blog',
     'rockman.gallery',
     'rockman.todo',
 )
@@ -59,6 +60,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+TEMPLATE_DIRS = (
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR, 'templates'),
+    os.path.join(BASE_DIR, 'blog', 'templates', 'zinnia'),
 )
 
 TEMPLATE_LOADERS = [
