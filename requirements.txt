@@ -5,3 +5,5 @@ mots-vides>=2015.2.6
 django-app-namespace-template-loader==0.2
 django-blog-zinnia==0.15.1
 zinnia-theme-bootstrap==0.4
+django-photologue==3.1.1
+django-sortedm2m==0.9.3
