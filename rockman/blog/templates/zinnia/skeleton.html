@@ -38,68 +38,69 @@
     {% block script %}{% endblock script %}
   </head>
   <body class="zinnia {% block body-class %}{% endblock body-class %}">
-    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">{% trans "Toggle navigation" %}</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <img src="{% static "zinnia_bootstrap/img/zinnia.png" %}" class="pull-left" alt="Zinnia's Weblog" />
-          <a href="{% url 'zinnia:entry_archive_index' %}" title="Zinnia's Welog" class="navbar-brand" rel="home">
-            Zinnia's Weblog
-          </a>
-        </div>
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <ul class="nav navbar-nav navbar-left">
-            {% url 'zinnia:category_list' as category_list_url %}
-            <li {% if category_list_url in request.path %}class="active"{% endif %}>
-              <a href="{{ category_list_url }}" title="{% trans "Category list" %}">
-                {% trans "Categories" %}
-              </a>
-            </li>
-            {% url 'zinnia:author_list' as author_list_url %}
-            <li {% if author_list_url in request.path %}class="active"{% endif %}>
-              <a href="{{ author_list_url }}" title="{% trans "Author list" %}">
-                {% trans "Authors" %}
-              </a>
-            </li>
-            {% url 'zinnia:tag_list' as tag_list_url %}
-            <li {% if tag_list_url in request.path %}class="active"{% endif %}>
-              <a href="{{ tag_list_url }}" title="{% trans "Tag list" %}">
-                {% trans "Tags" %}
-              </a>
-            </li>
-            <li class="divider-vertical"></li>
-          </ul>
-          <form method="get" action="{% url 'zinnia:entry_search' %}" class="navbar-form navbar-left">
-            <div class="form-group">
-              <input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" />
-            </div>
-            <button type="submit" name="submit" class="btn btn-default btn-sm">
-              <span class="glyphicon glyphicon-search"></span>
-            </button>
-          </form>
-          <ul class="nav navbar-nav navbar-right">
-            {% url 'zinnia:sitemap' as sitemap_url %}
-            <li {% if sitemap in request.path %}class="active"{% endif %}>
-            <li>
-              <a href="{{ sitemap_url }}" title="{% trans "Sitemap" %}" class="sitemap">
-                {% trans "Sitemap" %}
-              </a>
-            </li>
-            <li class="divider-vertical"></li>
-            <li>
-              <a href="{% url 'zinnia:entry_latest_feed' %}" title="{% trans "RSS Feed of latest entries" %}" class="feeds">
-                {% trans "RSS Feed" %}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <!--<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">-->
+      <!--<div class="container">-->
+        <!--<div class="navbar-header">-->
+          <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">-->
+            <!--<span class="sr-only">{% trans "Toggle navigation" %}</span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--<span class="icon-bar"></span>-->
+          <!--</button>-->
+          <!--<img src="{% static "zinnia_bootstrap/img/zinnia.png" %}" class="pull-left" alt="Zinnia's Weblog" />-->
+          <!--<a href="{% url 'zinnia:entry_archive_index' %}" title="Zinnia's Welog" class="navbar-brand" rel="home">-->
+            <!--Zinnia's Weblog-->
+          <!--</a>-->
+        <!--</div>-->
+        <!--<div class="collapse navbar-collapse navbar-ex1-collapse">-->
+          <!--<ul class="nav navbar-nav navbar-left">-->
+            <!--{% url 'zinnia:category_list' as category_list_url %}-->
+            <!--<li {% if category_list_url in request.path %}class="active"{% endif %}>-->
+              <!--<a href="{{ category_list_url }}" title="{% trans "Category list" %}">-->
+                <!--{% trans "Categories" %}-->
+              <!--</a>-->
+            <!--</li>-->
+            <!--{% url 'zinnia:author_list' as author_list_url %}-->
+            <!--<li {% if author_list_url in request.path %}class="active"{% endif %}>-->
+              <!--<a href="{{ author_list_url }}" title="{% trans "Author list" %}">-->
+                <!--{% trans "Authors" %}-->
+              <!--</a>-->
+            <!--</li>-->
+            <!--{% url 'zinnia:tag_list' as tag_list_url %}-->
+            <!--<li {% if tag_list_url in request.path %}class="active"{% endif %}>-->
+              <!--<a href="{{ tag_list_url }}" title="{% trans "Tag list" %}">-->
+                <!--{% trans "Tags" %}-->
+              <!--</a>-->
+            <!--</li>-->
+            <!--<li class="divider-vertical"></li>-->
+          <!--</ul>-->
+          <!--<form method="get" action="{% url 'zinnia:entry_search' %}" class="navbar-form navbar-left">-->
+            <!--<div class="form-group">-->
+              <!--<input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" />-->
+            <!--</div>-->
+            <!--<button type="submit" name="submit" class="btn btn-default btn-sm">-->
+              <!--<span class="glyphicon glyphicon-search"></span>-->
+            <!--</button>-->
+          <!--</form>-->
+          <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--{% url 'zinnia:sitemap' as sitemap_url %}-->
+            <!--<li {% if sitemap in request.path %}class="active"{% endif %}>-->
+            <!--<li>-->
+              <!--<a href="{{ sitemap_url }}" title="{% trans "Sitemap" %}" class="sitemap">-->
+                <!--{% trans "Sitemap" %}-->
+              <!--</a>-->
+            <!--</li>-->
+            <!--<li class="divider-vertical"></li>-->
+            <!--<li>-->
+              <!--<a href="{% url 'zinnia:entry_latest_feed' %}" title="{% trans "RSS Feed of latest entries" %}" class="feeds">-->
+                <!--{% trans "RSS Feed" %}-->
+              <!--</a>-->
+            <!--</li>-->
+          <!--</ul>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</nav>-->
+    {% include '../../base/templates/navbar.html' %}
     {% block slider %}{% endblock %}
     <div class="container">
       <div class="row">
