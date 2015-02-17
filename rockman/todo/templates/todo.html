@@ -5,7 +5,7 @@
     <div class="jumbotron">
       <h3>ToDo List: {{ name }}</h3>
       {% for t in todo_list %}
-        <div class="checkbox">
+        <div class="checkbox {{ t.assignee }}">
           <label><input type="checkbox" value="">{{ t.task }}, {{ t.category }}, {{ t.assignee }}, {{ t.due }}</label>
         </div>
       {% endfor %}
