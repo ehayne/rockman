@@ -5,14 +5,18 @@
     <div class="jumbotron">
       <h3>ToDo List: {{ name }}</h3>
       {% if todo_list %}
-        <form action="" method="POST">
+        <form action="{% url "save" %}" method="POST">
         {% csrf_token %}
+
+        <input type="hidden" name="type" value="{{ type }}">
+        <input type="hidden" name="name" value="{{ name }}">
+
         {% for t in todo_list %}
           <div class="checkbox {{ t.assignee }}">
-            <label><input type="checkbox" value="">{{ t.task }}, {{ t.category }}, {{ t.assignee }}, {{ t.due }}</label>
+            <label><input type="checkbox" name="id" value="{{ t.id }}">{{ t.task }} - {{ t.due }}</label>
           </div>
         {% endfor %}
-          <input type="submit" value="Save">
+          <input type="submit" value="Mark Complete">
         </form>
       {% else %}
         <p>There are no todo items for {{name}}!!</p>

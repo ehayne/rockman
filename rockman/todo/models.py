@@ -2,6 +2,9 @@
 from django.db import models
 
 class Todo(models.Model):
+    id = models.AutoField(
+        primary_key=True
+    )
     task = models.CharField(
         max_length=2000,
         help_text='A description of what needs to be done.',
