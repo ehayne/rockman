@@ -1,6 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import render_to_response, redirect
-from django.template import RequestContext, loader
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 from datetime import datetime
 
@@ -67,7 +66,7 @@ def save(request):
         try:
             task = Todo.objects.get(pk=id)
         except Todo.DoesNotExist:
-            print('not found')
+            print('not found')  # TODO: how to handle this??
         task.completed = datetime.now()
         task.full_clean()
         task.save()
