@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 from photologue import PHOTOLOGUE_APP_DIR
 
@@ -80,11 +81,9 @@ TEMPLATE_LOADERS = [
     'app_namespace.Loader',
 ]
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-  'django.contrib.auth.context_processors.auth',
-  'django.core.context_processors.i18n',
-  'django.core.context_processors.request',
+TEMPLATE_CONTEXT_PROCESSORS += (
   'zinnia.context_processors.version',  # Optional for zinnia blog
+  'rockman.processor.default',
 )
 
 ROOT_URLCONF = 'rockman.urls'

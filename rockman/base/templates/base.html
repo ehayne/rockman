@@ -6,11 +6,14 @@
         <meta charset="UTF-8">
         <title>{{ window_title }}</title>
 
-        <!-- Bootstrap -->
-        <link href="{% static 'base/css/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+        {% for s in css_file %}
+        <link rel="stylesheet" href="{% static s %}">
+        {% endfor %}
 
-        <!-- base styles -->
-        <link href="{% static 'base/css/base.css' %}" rel="stylesheet">
+        {% for m in extra_css_file %}
+        <link rel="stylesheet" href="{% static m %}" type="text/css" media="screen" >
+        {% endfor %}
+
     </head>
 
     <body>
@@ -22,7 +25,12 @@
       </div>
     <!-- placed at end of doc so it loads faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="{% static 'base/js/bootstrap/bootstrap.min.js' %}"></script>
-    <script src="{% static 'base/js/base.js' %}"></script>
+    {% for j in js_file %}
+        <script type="text/javascript" src="{% static j %}"></script>
+    {% endfor %}
+
+    {% for k in extra_js_file %}
+        <script type="text/javascript" src="{% static k %}"></script>
+    {% endfor %}
     </body>
 </html>
