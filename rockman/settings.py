@@ -72,16 +72,19 @@ MIDDLEWARE_CLASSES = (
 TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR, 'templates'),
+    os.path.join(BASE_DIR, 'base', 'templates'),
     os.path.join(BASE_DIR, 'blog', 'templates', 'zinnia'),
     PHOTOLOGUE_APP_DIR,
 )
 
 TEMPLATE_LOADERS = [
+    'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
     'app_namespace.Loader',
 ]
 
 TEMPLATE_CONTEXT_PROCESSORS += (
+  'django.core.context_processors.request',  # requires for zinnia
   'zinnia.context_processors.version',  # Optional for zinnia blog
   'rockman.processor.default',
 )
