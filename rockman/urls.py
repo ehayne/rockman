@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^(?i)blog/', include('rockman.blog.urls')),
     url(r'^(?i)gallery/', include('rockman.gallery.urls')),
     url(r'^(?i)todo/', include('rockman.todo.urls')),
+    url(r'^(?i)meals/', include('rockman.meals.urls')),
 
     url(r'^(?i)photologue/', include('photologue.urls', namespace="photologue")),
 )

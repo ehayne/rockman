@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+      <h3>Meals for the Week of: {{ week_of }}</h3>
+      {% for day in meal_list %}
+        <p>this is where meal info would go</p>
+      {% endfor %}
+
+      {% if not meal_list %}
+        <p>There are no meals for the week of {{week_of}}!!</p>
+      {% endif %}
+{% endblock %}

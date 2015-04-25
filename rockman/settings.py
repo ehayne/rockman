@@ -57,6 +57,7 @@ INSTALLED_APPS = (
     'rockman.base',
     'rockman.gallery',
     'rockman.todo',
+    'rockman.meals',
 )
 
 MIDDLEWARE_CLASSES = (

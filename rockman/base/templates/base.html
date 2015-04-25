@@ -24,9 +24,11 @@
     {% include 'navbar.html' %}
       <div class="container">
         <div class="jumbotron">
-        {% block content %}{% endblock %}
+          {% block content %}{% endblock %}
         </div>
       </div>
+
+        {% include 'footer.html' %}
     <!-- placed at end of doc so it loads faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     {% for j in js_file %}
