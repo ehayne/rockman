@@ -16,10 +16,10 @@ class Day(models.Model):
         unique=True
     )
 
-    def clean(self):
-        # Don't allow date to be blank
-        if self.date is None:
-            raise ValidationError('Date is required for a meal.')
+    # def clean(self):
+    #     # Don't allow date to be blank
+    #     if self.date is None:
+    #         raise ValidationError('Date is required for a meal.')
 
 
 class Meal(models.Model):
@@ -59,6 +59,8 @@ class MealType(models.Model):
     )
     description = models.CharField(
         max_length=2000,
+        blank=True,
+        null=True,
         help_text='A description of the meal type.',
     )
 
@@ -79,14 +81,20 @@ class Recipe(models.Model):
     ingredients = models.CharField(  # TODO: this should be a key to an ingredients list - ideally it should point ot kyle's app
         max_length=2000,
         help_text='A list of ingredients for the recipe.',
+        blank=True,
+        null=True,
     )
     directions = models.CharField(
         max_length=2000,
         help_text='Directions for preparing the recipe.',
+        blank=True,
+        null=True,
     )
     notes = models.CharField(
         max_length=2000,
         help_text='Interesting notes about the recipe.',
+        blank=True,
+        null=True,
     )
 
     def clean(self):
