@@ -9,10 +9,12 @@ def default(request):
                      ],
         'js_file': ['base/js/bootstrap/bootstrap.min.js',
                     'base/js/base.js',
+                    'base/js/jquery-1.11.2.min.js',
                     # 'base/js/tabs.js',
                     ],
-        'js_file_url': ['https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js',
-                        'https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js',
+        'js_file_url': [
+                        # 'https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js',
+                        # 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js',
                     ],
         'page_title': 'Emily & Kyle rockman.life',
         'window_title': 'rockman.life',  #use full names for search engine optimization

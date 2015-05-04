@@ -39,6 +39,9 @@ class Meal(models.Model):
         null=True
     )
 
+    def __unicode__(self):
+        return self.meal_type
+
     def clean(self):
         # Don't allow task to be blank
         if self.meal_type is None:
