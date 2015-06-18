@@ -13,7 +13,7 @@ import os
 import sys
 import dj_database_url
 from django.contrib import messages
-from django_jinja.builtins import DEFAULT_EXTENSIONS
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 from rockman.processor import default
 
 PROJECT_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), os.pardir))
@@ -56,7 +56,6 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = (
     'bootstrap3',
-    'django_jinja',
     'django_admin_bootstrapped',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -107,47 +106,17 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 MEDIA_URL = '/media/'
 
-TEMPLATE_LOADERS = (
-    'django_jinja.loaders.FileSystemLoader',
-    'django_jinja.loaders.AppLoader',
+TEMPLATE_LOADERS = [
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
     'app_namespace.Loader',
-)
-
-TEMPLATES = [
-    {
-        "BACKEND": "django_jinja.backend.Jinja2",
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "match_extension": ".jinja",
-            "globals": {
-                'get_messages': 'django.contrib.messages.api.get_messages',
-            },
-            "extensions": DEFAULT_EXTENSIONS + [
-                'rockman.base.extensions.Django',
-            ],
-            "constants": default('')
-        }
-    },
-    {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "context_processors": [
-                "django.contrib.auth.context_processors.auth",
-                "django.template.context_processors.debug",
-                "django.template.context_processors.i18n",
-                "django.template.context_processors.media",
-                "django.template.context_processors.static",
-                "django.template.context_processors.tz",
-                "django.contrib.messages.context_processors.messages",
-                'django.core.context_processors.request',  # requires for zinnia
-                'zinnia.context_processors.version',  # Optional for zinnia blog
-                'rockman.processor.default',
-            ],
-        }
-    },
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS += (
+  'django.core.context_processors.request',  # requires for zinnia
+  'zinnia.context_processors.version',  # Optional for zinnia blog
+  'rockman.processor.default',
+)
 
 # override tag name for bootstrap 3
 MESSAGE_TAGS = {
