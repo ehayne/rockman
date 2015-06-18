@@ -149,6 +149,15 @@ TEMPLATES = [
     },
 ]
 
+# override tag name for bootstrap 3
+MESSAGE_TAGS = {
+    messages.SUCCESS: 'alert-success success',
+    messages.WARNING: 'alert-warning warning',
+    messages.ERROR: 'alert-danger error'
+}
+
+DAB_FIELD_RENDERER = 'django_admin_bootstrapped.renderers.BootstrapFieldRenderer'
+
 try:
     from rockman.local_settings import *
 except ImportError:
