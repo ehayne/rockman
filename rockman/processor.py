@@ -1,6 +1,3 @@
-from rockman import settings
-
-
 def default(request):
     return {
         'css_file': ['base/css/bootstrap/bootstrap.min.css',

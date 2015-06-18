@@ -10,10 +10,15 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-from photologue import PHOTOLOGUE_APP_DIR
+import sys
+import dj_database_url
+from django.contrib import messages
+from django_jinja.builtins import DEFAULT_EXTENSIONS
+from rockman.processor import default
 
+PROJECT_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), os.pardir))
+
+sys.path.insert(0, os.path.normpath(PROJECT_ROOT))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -21,32 +26,52 @@ from photologue import PHOTOLOGUE_APP_DIR
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'zn89yyf2ob_pc3bq)*y=swyqb)hv6$&ck(u9cj4!a0-pjc9sks'
 
-APP_ENV = os.environ.get('APP_ENV', 'local')
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+DEBUG_TOOLBAR_PATCH_SETTINGS = DEBUG
 
-ALLOWED_HOSTS = []
+TEMPLATE_DEBUG = DEBUG
 
+MAINTENANCE = False
 
-# Application definition
+USE_L10N = True
+
+USE_TZ = True
+
+SITE_ID = 1
+
+ROOT_URLCONF = 'rockman.urls'
+
+WSGI_APPLICATION = 'rockman.wsgi.application'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'donotreply8386@gmail.com'
+EMAIL_HOST_PASSWORD = 'password8386'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+ALLOWED_HOSTS = [
+    '*.rockman.life',
+]
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
+    'bootstrap3',
+    'django_jinja',
+    'django_admin_bootstrapped',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
+    'django.contrib.auth',
     'django.contrib.sites',
-
+    'debug_toolbar',
+    
+    # photologue apps
     'photologue',
     'sortedm2m',
 
-    #zinna blog apps
-
+    # zinna blog apps
     'rockman.blog',
     'zinnia_bootstrap',
     'django_comments',
@@ -54,6 +79,7 @@ INSTALLED_APPS = (
     'tagging',
     'zinnia',
 
+    # rockman apps
     'rockman.base',
     'rockman.gallery',
     'rockman.todo',
@@ -70,65 +96,58 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-TEMPLATE_DIRS = (
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, 'templates'),
-    os.path.join(BASE_DIR, 'base', 'templates'),
-    os.path.join(BASE_DIR, 'blog', 'templates', 'zinnia'),
-    PHOTOLOGUE_APP_DIR,
-)
-
-TEMPLATE_LOADERS = [
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-    'app_namespace.Loader',
-]
-
-TEMPLATE_CONTEXT_PROCESSORS += (
-  'django.core.context_processors.request',  # requires for zinnia
-  'zinnia.context_processors.version',  # Optional for zinnia blog
-  'rockman.processor.default',
-)
-
-ROOT_URLCONF = 'rockman.urls'
-
-WSGI_APPLICATION = 'rockman.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(default='sqlite:///%s/rockman.sqlite' % PROJECT_ROOT)
 }
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-SITE_ID = 1
-
-# TODO: fix the static paths to be dynamic
-
-PROJECT_ROOT = PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
-
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-
+# Static root is None because we don't want to collect static, we need
+# to manage our own static files layout because the django package
+# is bundled and will be located in site-packages
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 MEDIA_URL = '/media/'
+
+TEMPLATE_LOADERS = (
+    'django_jinja.loaders.FileSystemLoader',
+    'django_jinja.loaders.AppLoader',
+    'app_namespace.Loader',
+)
+
+TEMPLATES = [
+    {
+        "BACKEND": "django_jinja.backend.Jinja2",
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "match_extension": ".jinja",
+            "globals": {
+                'get_messages': 'django.contrib.messages.api.get_messages',
+            },
+            "extensions": DEFAULT_EXTENSIONS + [
+                'rockman.base.extensions.Django',
+            ],
+            "constants": default('')
+        }
+    },
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.contrib.auth.context_processors.auth",
+                "django.template.context_processors.debug",
+                "django.template.context_processors.i18n",
+                "django.template.context_processors.media",
+                "django.template.context_processors.static",
+                "django.template.context_processors.tz",
+                "django.contrib.messages.context_processors.messages",
+                'django.core.context_processors.request',  # requires for zinnia
+                'zinnia.context_processors.version',  # Optional for zinnia blog
+                'rockman.processor.default',
+            ],
+        }
+    },
+]
 
 try:
     from rockman.local_settings import *
