@@ -6,6 +6,7 @@ export VENV_DIR="$ROOT/venv"
 if [[ -e "$VENV_DIR/bin/activate" ]]
 then
   rm -rvf "$VENV_DIR"
+  rm ~/.rockman/rockman.conf.py
 fi
 virtualenv "$VENV_DIR"
 . "$VENV_DIR/bin/activate"
