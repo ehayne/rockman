@@ -9,7 +9,7 @@ export NGINX_ENABLED_CONF="/etc/nginx/site-enabled/${PROJECT_NAME}.conf"
 if [[ -e "$VENV_DIR/bin/activate" ]]
 then
   rm -rvf "$VENV_DIR"
-  rm ~/.rockman/rockman.conf.py
+  rm -vf ~/.rockman/rockman.conf.py
 fi
 virtualenv "$VENV_DIR"
 . "$VENV_DIR/bin/activate"
