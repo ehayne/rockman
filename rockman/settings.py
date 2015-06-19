@@ -60,7 +60,6 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = (
     'bootstrap3',
-    'django_admin_bootstrapped',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -128,8 +127,6 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning warning',
     messages.ERROR: 'alert-danger error'
 }
-
-DAB_FIELD_RENDERER = 'django_admin_bootstrapped.renderers.BootstrapFieldRenderer'
 
 try:
     from rockman.local_settings import *
