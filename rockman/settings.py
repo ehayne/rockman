@@ -44,6 +44,9 @@ ROOT_URLCONF = 'rockman.urls'
 
 WSGI_APPLICATION = 'rockman.wsgi.application'
 
+WEB_HOST = '0.0.0.0'
+WEB_PORT = '9005'
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'donotreply8386@gmail.com'
 EMAIL_HOST_PASSWORD = 'password8386'

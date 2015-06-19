@@ -36,8 +36,8 @@ class HTTPServer(object):
         if validate:
             self.validate_settings()
 
-        self.host = host or settings.WEB_HOST or '0.0.0.0'
-        self.port = port or settings.WEB_PORT or '9005'
+        self.host = host or settings.WEB_HOST
+        self.port = port or settings.WEB_PORT
         self.workers = workers
 
         options = (settings.WEB_OPTIONS or {}).copy()
