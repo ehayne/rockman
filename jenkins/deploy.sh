@@ -16,8 +16,8 @@ virtualenv "$VENV_DIR"
 pip install -r "./requirements.txt"
 python setup.py install
 
-cp -rv "./jenkins/nginx.conf" "${SUPERVISOR_CONF}"
-cp -rv "./jenkins/nginx.conf" "${NGINX_SRC_CONF}"
+cp -vf "./jenkins/supervisor.conf" "${SUPERVISOR_CONF}"
+cp -vf "./jenkins/nginx.conf" "${NGINX_SRC_CONF}"
 ln -snf "${NGINX_SRC_CONF}" "${NGINX_ENABLED_CONF}"
 
 rockman init
