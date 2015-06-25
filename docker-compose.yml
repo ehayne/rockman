@@ -1,0 +1,49 @@
+base:
+  build: .
+  dockerfile: docker/app/Dockerfile
+  command: bash
+  volumes:
+  - "$PWD/src:/src"
+  - "$PWD/data:/data"
+  - "$PWD/media:/media"
+
+tests:
+  extends:
+    file: docker-compose.yml
+    service: base
+  command: echo "         Complete"
+  links:
+    - unittest
+    - flake
+  volumes:
+    - "$PWD/out:/out"
+
+unittest:
+  extends:
+    file: docker-compose.yml
+    service: base
+  command: py.test -v --capture=sys --cov-report term --cov-report html --cov-report xml --junitxml /out/TEST-all.xml --cov rockman rockman_tests
+  volumes:
+    - "$PWD/out:/out"
+
+flake:
+  extends:
+    file: docker-compose.yml
+    service: base
+  command: flake8 --output-file=/out/flake8.txt rockman/
+  volumes:
+    - "$PWD/out:/out"
+
+dev:
+  extends:
+    file: docker-compose.yml
+    service: base
+  command: app runserver 0.0.0.0:8000
+  ports:
+  - 9000:8000
+
+prod:
+  extends:
+    file: docker-compose.yml
+    service: base
+  command: app start

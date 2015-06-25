@@ -45,7 +45,7 @@ ROOT_URLCONF = 'rockman.urls'
 WSGI_APPLICATION = 'rockman.wsgi.application'
 
 WEB_HOST = '0.0.0.0'
-WEB_PORT = '9005'
+WEB_PORT = '8000'
 WEB_OPTIONS = {}
 
 EMAIL_HOST = 'smtp.gmail.com'
@@ -99,14 +99,14 @@ MIDDLEWARE_CLASSES = (
 )
 
 DATABASES = {
-    'default': dj_database_url.config(default='sqlite:///%s/rockman.sqlite' % PROJECT_ROOT)
+    'default': dj_database_url.config(default='sqlite:////data/rockman.sqlite')
 }
 
 # Static root is None because we don't want to collect static, we need
 # to manage our own static files layout because the django package
 # is bundled and will be located in site-packages
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+MEDIA_ROOT = '/media'
 MEDIA_URL = '/media/'
 
 TEMPLATE_LOADERS = [
