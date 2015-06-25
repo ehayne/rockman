@@ -1,7 +1,4 @@
-#rockman
-
-Personal Website
-
+# Personal Website
 
 ## Quickstart
 
