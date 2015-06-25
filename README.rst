@@ -9,6 +9,4 @@ Quickstart
 
 .. code-block:: bash
 
-    python setup.py install
-    ohr init
-    ohr runserver
+    https://github.com/rockmans/personal-website/wiki/using-docker
