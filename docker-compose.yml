@@ -40,7 +40,7 @@ dev:
     service: base
   command: app runserver 0.0.0.0:8000
   ports:
-  - 9000:8000
+  - 8000:8000
 
 prod:
   extends:
