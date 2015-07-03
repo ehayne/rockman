@@ -1,6 +1,6 @@
 base:
   build: .
-  dockerfile: docker/app/Dockerfile
+  dockerfile: Dockerfile
   command: bash
   volumes:
   - "$PWD/src:/src"

@@ -17,3 +17,5 @@ COPY ./src/ /src
 # This is to make pbr work
 RUN git init
 RUN python setup.py develop
+
+CMD ["app", "start"]
