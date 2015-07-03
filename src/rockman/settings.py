@@ -13,7 +13,8 @@ import os
 import sys
 import dj_database_url
 from django.contrib import messages
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS, AUTHENTICATION_BACKENDS
+from social.pipeline import DEFAULT_AUTH_PIPELINE
 from rockman.processor import default
 
 PROJECT_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), os.pardir))
@@ -67,7 +68,10 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
+
+    # Utility apps
     'debug_toolbar',
+    'social.apps.django_app.default',
     
     # photologue apps
     'photologue',
@@ -98,6 +102,22 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+AUTHENTICATION_BACKENDS += (
+    'social.backends.github.GithubOrganizationOAuth2',
+)
+SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
+SOCIAL_AUTH_GITHUB_ORG_NAME = 'rockmans'
+SOCIAL_AUTH_GITHUB_ORG_KEY = os.environ.get('GITHUB_KEY', '5f32ffb08aa465a6477e')
+SOCIAL_AUTH_GITHUB_ORG_SECRET = os.environ.get('GITHUB_SECRET', '09f6784dd3b4e672c0a69aeb7db70f08b670cd73')
+#SOCIAL_AUTH_SANITIZE_REDIRECTS = True
+#SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/'
+#SOCIAL_AUTH_LOGIN_URL = '/social/login/github-org'
+
+
+SOCIAL_AUTH_PIPELINE = DEFAULT_AUTH_PIPELINE + (
+    'rockman.base.auth_pipeline.make_superuser',   
+)
+
 DATABASES = {
     'default': dj_database_url.config(default='sqlite:////data/rockman.sqlite')
 }
@@ -116,9 +136,11 @@ TEMPLATE_LOADERS = [
 ]
 
 TEMPLATE_CONTEXT_PROCESSORS += (
-  'django.core.context_processors.request',  # requires for zinnia
-  'zinnia.context_processors.version',  # Optional for zinnia blog
-  'rockman.processor.default',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
+    'django.core.context_processors.request',  # requires for zinnia
+    'zinnia.context_processors.version',  # Optional for zinnia blog
+    'rockman.processor.default',
 )
 
 # override tag name for bootstrap 3

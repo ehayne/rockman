@@ -14,5 +14,6 @@ jinja2==2.7.3
 logan==0.7.1
 markupsafe==0.23
 mots-vides>=2015.2.6
+python-social-auth==0.2.11
 pytz==2015.4
 zinnia-theme-bootstrap==0.4
