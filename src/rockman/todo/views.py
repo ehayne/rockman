@@ -1,9 +1,29 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from rockman.todo.models import Category, Assignee, Todo
+
 from datetime import datetime
 
 from .models import Todo
+
+
+def todo_list(request):
+    """
+    search for todo's by category and/or assignee
+    """
+
+    categories = Category.objects.values('name')
+    assignees = Assignee.objects.values('name')
+
+    context= {
+        'category_list': categories,
+        'assignee_list': assignees,
+    }
+
+    template = 'search_form.html'
+
+    return render_to_response(template, context, RequestContext(request))
 
 
 def lookup_person(request, assignee):
@@ -11,7 +31,8 @@ def lookup_person(request, assignee):
     find the todo list for a person
     """
 
-    list = Todo.objects.filter(assignee__iexact=assignee)
+    assignee_id = Assignee.objects.filter(name__iexact=assignee)
+    list = Todo.objects.filter(assignee=assignee_id)
 
     context= {
         'name': assignee,
@@ -32,7 +53,8 @@ def lookup_category(request, category):
     find the todo list for a category
     """
 
-    list = Todo.objects.filter(category__iexact=category)
+    category_id = Category.objects.filter(name__iexact=category)
+    list = Todo.objects.filter(category__iexact=category_id)
 
     context= {
         'name': category,

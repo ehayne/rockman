@@ -1,5 +1,5 @@
 from django.contrib import admin
-from rockman.todo.models import Todo, Assignee,Category
+from rockman.todo.models import Todo, Assignee, Category
 
 class TodoAdmin(admin.ModelAdmin):
     list_display = ('task', 'category', 'assignee',)

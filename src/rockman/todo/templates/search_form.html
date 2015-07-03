@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+      <h3>ToDo List: {{ name }}</h3>
+      {% for c in category_list %}
+        <p>{{ c }}</p>
+      {% endfor %}
+      {% for a in assignee_list %}
+        <p>{{ a }}</p>
+      {% endfor %}
+{% endblock %}

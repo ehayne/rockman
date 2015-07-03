@@ -12,4 +12,7 @@ urlpatterns = patterns('',
     url(r'^save/$',
         views.save,
         name='save'),
+    url(r'^$',
+        views.todo_list,
+        name='todo_list'),
 )
