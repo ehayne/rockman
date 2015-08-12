@@ -14,7 +14,8 @@ html {
 }
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #cccccc;
 }
 .footer {
   position: absolute;
@@ -28,4 +29,8 @@ body {
  /*Fixed navbar styles*/
 body > .container {
   padding-top: 60px;
+}
+
+.jumbotron {
+    background-color: #97c3a2;
 }
