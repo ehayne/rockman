@@ -23,7 +23,11 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: #f5f5f5;
+  background-color: #97c3a2;
+}
+
+.navbar-default {
+     background-color: #97c3a2;
 }
 
  /*Fixed navbar styles*/
@@ -32,5 +36,5 @@ body > .container {
 }
 
 .jumbotron {
-    background-color: #97c3a2;
+    background-color: #fff;
 }
