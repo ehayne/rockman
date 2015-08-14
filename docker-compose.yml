@@ -36,3 +36,5 @@ prod:
     file: docker-compose.yml
     service: base
   command: app start
+  ports:
+  - 80:8000

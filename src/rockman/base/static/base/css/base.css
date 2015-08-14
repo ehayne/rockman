@@ -14,8 +14,10 @@ html {
 }
 body {
   /* Margin bottom by footer height */
-    margin-bottom: 60px;
-    background-color: #cccccc;
+  margin-bottom: 60px;
+}
+body > .container {
+  padding-top: 60px;
 }
 .footer {
   position: absolute;
@@ -23,18 +25,4 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: #97c3a2;
-}
-
-.navbar-default {
-     background-color: #97c3a2;
-}
-
- /*Fixed navbar styles*/
-body > .container {
-  padding-top: 60px;
-}
-
-.jumbotron {
-    background-color: #fff;
 }

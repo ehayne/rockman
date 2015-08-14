@@ -17,7 +17,7 @@ def gallery(request):
     template = loader.get_template('gallery.html')
     context = RequestContext(request, {
         'object_list': photos,
-        'extra_js_file': ['gallery/fancybox/lib/jquery.mousewheel-3.0.6.pack.js',
+        'extra_js_file': ['gallery/fancybox/source/jquery.mousewheel-3.0.6.pack.js',
                           'gallery/fancybox/source/jquery.fancybox.pack.js',
                           'gallery/fancybox/source/helpers/jquery.fancybox-buttons.js',
                           'gallery/fancybox/source/helpers/jquery.fancybox-media.js',

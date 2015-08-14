@@ -1,13 +1,11 @@
 def default(request):
     return {
-        'css_file': ['base/css/bootstrap/bootstrap.min.css',
-                     'base/css/bootstrap/bootstrap-theme.min.css',
+        'css_file': ['base/css/theme.css',
                      'base/css/base.css',
                      ],
-        'js_file': ['base/js/bootstrap/bootstrap.min.js',
-                    'base/js/base.js',
+        'js_file': ['base/js/bootstrap.js',
                     'base/js/jquery-1.11.2.min.js',
-                    # 'base/js/tabs.js',
+                    'base/js/base.js',
                     ],
 
         'page_title': 'emily & kyle rockman.life',
