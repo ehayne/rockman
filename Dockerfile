@@ -19,6 +19,7 @@ RUN pip install dj-database-url==0.3.0 \
                 markupsafe==0.23 \
                 mots-vides>=2015.2.6 \
                 pbr==1.1.1 \
+                psycopg2==2.6.1 \
                 pytest==2.7.2 \
                 pytest-cov==1.8.1 \
                 pytest-capturelog==0.7 \
