@@ -6,6 +6,7 @@ RUN pip install dj-database-url==0.3.0 \
                 django==1.8.2 \
                 django-app-namespace-template-loader==0.3 \
                 django-admin-bootstrapped==2.5.0 \
+                django-blog-zinnia==0.15.2 \
                 django-bootstrap3==5.4.0 \
                 django-braces==1.8.0 \
                 django-debug-toolbar==1.3 \
@@ -28,8 +29,6 @@ RUN pip install dj-database-url==0.3.0 \
                 python-social-auth==0.2.11 \
                 pytz==2015.4 \
                 zinnia-theme-bootstrap==0.4
-                
-RUN pip install git+https://github.com/Fantomas42/django-blog-zinnia.git@4c93dcecbb1a52888adc2ee43a8413283cc0210a
 
 WORKDIR /src
 COPY ./src/ /src
