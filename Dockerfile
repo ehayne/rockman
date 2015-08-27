@@ -39,4 +39,5 @@ RUN git init
 RUN python setup.py develop
 RUN app migrate
 
+EXPOSE 8000
 CMD ["app", "start"]
