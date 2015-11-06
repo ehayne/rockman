@@ -17,4 +17,4 @@ import newrelic.agent
 application = get_wsgi_application()
 application = DjangoWhiteNoise(application)
 newrelic.agent.initialize('/src/newrelic.ini', os.environ.get("APP", "test"))
-application = newrelic.agrent.WSGIApplicationWrapper(application)
+application = newrelic.agent.WSGIApplicationWrapper(application)
