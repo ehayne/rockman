@@ -12,7 +12,9 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "rockman.settings")
 
 from django.core.wsgi import get_wsgi_application
 from whitenoise.django import DjangoWhiteNoise
-from newrelic.agent import WSGIApplicationWrapper
+import newrelic
+
 application = get_wsgi_application()
 application = DjangoWhiteNoise(application)
-application = WSGIApplicationWrapper(application)
+newrelic.agent.initialize('/src/newrelic.ini', os.environ.get("APP", "test"))
+application = newrelic.agrent.WSGIApplicationWrapper(application)
