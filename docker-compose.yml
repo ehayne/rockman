@@ -4,7 +4,6 @@ base:
   command: bash
   volumes:
   - "$PWD/src:/src"
-  - "$PWD/media:/media"
 
 tests:
   extends:
@@ -22,20 +21,12 @@ pep8:
   volumes:
     - "$PWD/out:/out"
 
-dev:
+rockman:
   extends:
     file: docker-compose.yml
     service: base
-  command: app runserver 0.0.0.0:8000
-  environment:
-  - DATABASE_URL
-  ports:
-  - 80:8000
-
-prod:
-  extends:
-    file: docker-compose.yml
-    service: base
-  command: app start
+  command: django-admin runserver 0.0.0.0:8000
+  volumes:
+  - "$PWD/data:/data"
   ports:
   - 80:8000

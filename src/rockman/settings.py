@@ -119,15 +119,14 @@ SOCIAL_AUTH_PIPELINE = DEFAULT_AUTH_PIPELINE + (
 )
 
 DATABASES = {
-    'default': dj_database_url.config(default='sqlite:////data/rockman.sqlite')
+    'default': dj_database_url.config(default='sqlite:///%s/database.sqlite' % PROJECT_ROOT)
 }
 
-# Static root is None because we don't want to collect static, we need
-# to manage our own static files layout because the django package
-# is bundled and will be located in site-packages
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'rockman', 'static')
+MEDIA_ROOT = '/tmp/parlour-media'
 STATIC_URL = '/static/'
-MEDIA_ROOT = '/media'
-MEDIA_URL = '/media/'
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 TEMPLATE_LOADERS = [
     'django.template.loaders.filesystem.Loader',
