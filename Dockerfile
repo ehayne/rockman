@@ -1,6 +1,7 @@
-FROM python:2.7.9
+FROM python:2-slim
 
-RUN pip install \
+RUN apt-get update -y && apt-get install -y libpq-dev gcc ca-certificates libjpeg-dev libpng-dev libtiff-dev && \
+    pip install \
     dj-database-url==0.3.0 \
     django==1.8.2 \
     django-app-namespace-template-loader==0.3 \
@@ -10,7 +11,7 @@ RUN pip install \
     django-braces==1.8.0 \
     django-debug-toolbar==1.3 \
     django-jinja==1.4.1 \
-    django-photologue==3.2 \
+    django-photologue==3.5.1 \
     flake8==2.4.0 \
     gevent==1.0.2 \
     gunicorn==19.3.0 \
@@ -29,7 +30,10 @@ RUN pip install \
     python-social-auth==0.2.11 \
     pytz==2015.4 \
     whitenoise==2.0.2 \
-    zinnia-theme-bootstrap==0.4
+    zinnia-theme-bootstrap==0.4 \
+    && \
+    apt-get remove -y --purge gcc && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV DJANGO_SETTINGS_MODULE=rockman.settings \
     PYTHONPATH=/src
