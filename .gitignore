@@ -54,3 +54,8 @@ docs/_build/
 target/
 .DS_Store
 out/
+
+# PyCharm
+.idea
+
+database.sqlite
